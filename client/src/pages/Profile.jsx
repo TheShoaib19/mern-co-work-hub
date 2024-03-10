@@ -122,7 +122,7 @@ export default function Profile() {
             (filePerc > 0 && filePerc < 100) ? 
               (<span className='text-slate-700'>{`Uploading ${filePerc}%` }</span>) :
               (filePerc === 100) ? 
-                (<span className='text-green-700'>Image Successfully Uploaded!</span>) :
+                (<span className='text-green-700'>Image Uploaded Successfully (please press update to confirm)!</span>) :
                 ("")
           }
         </p>
@@ -150,7 +150,7 @@ export default function Profile() {
       )}
 
       <p className='text-red-700 mt-5'>{error ? error : ""}</p>
-      <p className='text-green-700 mt-5'>{updateSuccess ? 'User is updated successfully!' : ""}</p>
+      <p className='text-green-700 mt-5'>{updateSuccess ? 'Updated Successfully!' : ""}</p>
     </div>
   )
 }
