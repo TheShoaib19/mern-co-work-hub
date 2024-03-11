@@ -126,12 +126,12 @@ export default function CreateListing() {
                 <input onChange={handleChange} value={formData.address} type="text" placeholder='Address' className='border p-3 rounded-lg' id='address' required/>
                 <div className='flex gap-6 flex-wrap'>
                     <div className="flex gap-2">
-                        <input type="checkbox" id="sale" className='w-5' onChange={handleChange} checked={formData.type === 'sale'} />
-                        <span>Sale</span>
+                        <input type="radio" name="listingType" id="sale" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'sale'} />
+                        <label htmlFor="sale" className="cursor-pointer">Sale</label>
                     </div>
                     <div className="flex gap-2">
-                        <input type="checkbox" id="rent" className='w-5' onChange={handleChange} checked={formData.type === 'rent'}/>
-                        <span>Rent</span>
+                        <input type="radio" name="listingType" id="rent" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'rent'}/>
+                        <label htmlFor="rent" className="cursor-pointer">Rent</label>
                     </div>
                     <div className="flex gap-2">
                         <input type="checkbox" id="parking" className='w-5' onChange={handleChange} checked={formData.parking}/>
