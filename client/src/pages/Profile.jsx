@@ -19,6 +19,7 @@ export default function Profile() {
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [showListings, setShowListings] = useState(false);
 
   useEffect(() => {
     if(file){
@@ -115,17 +116,22 @@ export default function Profile() {
   }
 
   const handleShowListings = async () => {
-    try {
-      setShowListingsError(false);
-      const res = await fetch(`/api/user/listings/${currentUser._id}`);
-      const data = await res.json();
-      if(data.success === false){
+    if (showListings) {
+      setShowListings(false);
+    }else{
+      try {
+        setShowListingsError(false);
+        const res = await fetch(`/api/user/listings/${currentUser._id}`);
+        const data = await res.json();
+        if(data.success === false){
+          setShowListingsError(true);
+          return;
+        }
+        setUserListings(data);
+        setShowListings(true);
+      } catch (error) {
         setShowListingsError(true);
-        return;
       }
-      setUserListings(data);
-    } catch (error) {
-      setShowListingsError(true);
     }
    }
 
@@ -189,11 +195,13 @@ export default function Profile() {
 
       <p className='text-red-700 mt-5'>{error ? error : ""}</p>
       <p className='text-green-700 mt-5'>{updateSuccess ? 'Updated Successfully!' : ""}</p>
-      <button onClick={handleShowListings} className='text-green-700 w-full'>Show Listings</button>
+      <button onClick={handleShowListings} className='text-green-700 w-full'>
+        {showListings ? 'Hide Listings' : 'Show Listings'}
+      </button>
       <p className='text-red-700 mt-5'>
         {showListingsError ? 'Error showing listings' : ''}
       </p>
-      {userListings && userListings.length > 0 && 
+      {showListings && userListings && userListings.length > 0 && 
       <div className='flex flex-col gap-4'>
         <h1 className='text-center mt-7 text-2xl font-semibold'>Your Listings</h1>
         {
