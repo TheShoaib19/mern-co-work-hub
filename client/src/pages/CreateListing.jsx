@@ -3,6 +3,8 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/
 import { app } from "../firebase";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CreateListing() {
     const {currentUser} = useSelector(state => state.user);
@@ -42,11 +44,11 @@ export default function CreateListing() {
                 setImageUploadError(false);
                 setUploading(false);
             }).catch((err) => {
-                setImageUploadError('Image upload failed (2 MB max per image)');
+                toast.error('Image upload failed (2 MB max per image)');
                 setUploading(false);
             });
         }else{
-            setImageUploadError('You can only upload 6 images per listing');
+            toast.error('You can only upload 6 images per listing');
             setUploading(false);
         }
     };
@@ -90,8 +92,8 @@ export default function CreateListing() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if(formData.imageUrls.length < 1) return setError('You need to upload at least one image');
-            if(+formData.regularPrice < +formData.discountPrice) return setError('Discounted price cannot be higher than regular price');
+            if(formData.imageUrls.length < 1) return toast.error('You need to upload at least one image');
+            if(+formData.regularPrice < +formData.discountPrice) return toast.error('Discounted price cannot be higher than regular price');
             setLoading(true);
             setError(false);
             const res = await fetch('/api/listing/create', {
@@ -107,16 +109,18 @@ export default function CreateListing() {
             const data = await res.json();
             setLoading(false);
             if(data.success === false){
-                setError(data.message);
+                toast.error(data.message);
             }
             navigate(`/listing/${data._id}`);
         } catch (error) {
-            setError(error.message);
+            toast.error(error.message);
             setLoading(false);
         }
     }
 
   return (
+    <>
+    <ToastContainer />
     <main className='p-3 max-w-4xl mx-auto'>
         <h1 className='text-3xl font-semibold text-center my-7'>Create a Listing</h1>
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
@@ -201,5 +205,6 @@ export default function CreateListing() {
             </div>
         </form>
     </main>
+    </>
   )
 }
