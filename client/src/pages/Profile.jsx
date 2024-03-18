@@ -5,6 +5,8 @@ import { app } from '../firebase';
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure, signOutUserStart, signOutUserSuccess, signOutUserFailure } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Profile() {
@@ -20,6 +22,8 @@ export default function Profile() {
   const [userListings, setUserListings] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [showListings, setShowListings] = useState(false);
+  const [isDeleteListingModalOpen, setIsDeleteListingModalOpen] = useState(false);
+  const [listingIdToDelete, setListingIdToDelete] = useState(null);
 
   useEffect(() => {
     if(file){
@@ -68,7 +72,7 @@ export default function Profile() {
         return;
       }
       dispatch(updateUserSuccess(data));
-      setUpdateSuccess(true);
+      toast.success('Updated Successfully!');
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }
@@ -135,9 +139,13 @@ export default function Profile() {
     }
    }
 
-   const handleListingDelete = async (listingId) => {
+    const handleListingDelete = (listingId) => {
+      setListingIdToDelete(listingId);
+      setIsDeleteListingModalOpen(true);
+    }
+   const confirmDeleteListing = async () => {
     try {
-      const res = await fetch(`/api/listing/delete/${listingId}`, {
+      const res = await fetch(`/api/listing/delete/${listingIdToDelete}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -146,14 +154,18 @@ export default function Profile() {
         return;
       }
       setUserListings((prev) => 
-        prev.filter((listing) => listing._id !== listingId)
+        prev.filter((listing) => listing._id !== listingIdToDelete)
       );
+      toast.success('Listing deleted successfully');
+      setIsDeleteListingModalOpen(false);
     } catch (error) {
       console.log(error.message);
     }
    }
 
   return (
+    <>
+    <ToastContainer />
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
@@ -192,9 +204,19 @@ export default function Profile() {
           </div>
         </div>
       )}
+      {isDeleteListingModalOpen && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg">
+            <p className="text-lg mb-4">Are you sure you want to delete this listing?</p>
+            <div className="flex justify-end">
+              <button onClick={() => setIsDeleteListingModalOpen(false)} className="mr-4 px-4 py-2 border border-gray-400 rounded-md">Cancel</button>
+              <button onClick={confirmDeleteListing} className="px-4 py-2 bg-red-600 text-white rounded-md">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <p className='text-red-700 mt-5'>{error ? error : ""}</p>
-      <p className='text-green-700 mt-5'>{updateSuccess ? 'Updated Successfully!' : ""}</p>
       <button onClick={handleShowListings} className='text-green-700 w-full'>
         {showListings ? 'Hide Listings' : 'Show Listings'}
       </button>
@@ -223,5 +245,6 @@ export default function Profile() {
       </div>
       }
     </div>
+    </>
   )
 }
