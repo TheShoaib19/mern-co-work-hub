@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
     },
+    resetPasswordToken: String, // Add reset password token field
+    resetPasswordExpires: Date // Add reset password expiration field
 }, { timestamps: true })
 
 const User = mongoose.model('User', userSchema);

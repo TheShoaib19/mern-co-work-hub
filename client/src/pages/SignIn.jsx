@@ -43,29 +43,19 @@ export default function SignIn() {
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <input type="email" placeholder='Email' className='border p-3 rounded-lg' id='email' onChange={handleChange}/>
         <input type="password" placeholder='Password' className='border p-3 rounded-lg' id='password' onChange={handleChange}/>
-        {/* <div>
-          <p>Choose your role:</p>
-          <div className='flex gap-4'>
-            <label className='flex gap-1'>
-              <input type="radio" name="role" value="vendor" id="role" onChange={handleChange}/>
-              Vendor
-            </label>
-            <label className='flex gap-1'>
-              <input type="radio" name="role" value="consumer" id="role" onChange={handleChange}/>
-              Consumer
-            </label>
-          </div>
-        </div> */}
         <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
           {loading ? 'Loading...' : 'Sign In'}
         </button>
         <OAuth />
       </form>
       <div className='flex gap-2 mt-5'>
-        <p>Dont have an account? </p>
+        <p>Don't have an account? </p>
         <Link to="/sign-up">
-          <span className='text-blue-700'>Sign Up</span>
+          <span className='text-blue-700 hover:underline'>Sign Up</span>
         </Link>
+      </div>
+      <div>
+        <Link to="/forgot-password" className='text-blue-700 hover:underline'>Forgot Password?</Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>
