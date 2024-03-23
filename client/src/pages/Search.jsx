@@ -58,7 +58,7 @@ export default function Search() {
     }, [location.search]);
 
     const handleChange = (e) => {
-        if(e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale'){
+        if(e.target.id === 'all' || e.target.id === 'floor' || e.target.id === 'desk' || e.target.id === 'room' || e.target.id === 'meetingRoom' || e.target.id === 'eventSpace'){
             setSidebarData({
                 ...sidebarData,
                 type: e.target.id
@@ -111,7 +111,7 @@ export default function Search() {
     }
   return (
     <div className="flex flex-col md:flex-row">
-        <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
+        <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen max-w-[350px]">
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 <div className="flex items-center gap-2">
                     <label className="whitespace-nowrap font-semibold">Search Term</label>
@@ -124,16 +124,24 @@ export default function Search() {
                         <label htmlFor="all" className="cursor-pointer">All</label>
                     </div>
                     <div className="flex gap-2">
-                        <input onChange={handleChange} checked={sidebarData.type === 'rent'} type="radio" name="listingType" id="rent" className="w-5"/>
-                        <label htmlFor="rent" className="cursor-pointer">Rent</label>
+                        <input onChange={handleChange} checked={sidebarData.type === 'floor'} type="radio" name="listingType" id="floor" className="w-5"/>
+                        <label htmlFor="floor" className="cursor-pointer">Floor</label>
                     </div>
                     <div className="flex gap-2">
-                        <input onChange={handleChange} checked={sidebarData.type === 'sale'} type="radio" name="listingType" id="sale" className="w-5"/>
-                        <label htmlFor="sale" className="cursor-pointer">Sale</label>
+                        <input onChange={handleChange} checked={sidebarData.type === 'desk'} type="radio" name="listingType" id="desk" className="w-5"/>
+                        <label htmlFor="desk" className="cursor-pointer">Desk</label>
                     </div>
                     <div className="flex gap-2">
-                        <input onChange={handleChange} checked={sidebarData.offer} type="checkbox" id="offer" className="w-5"/>
-                        <span>Offer</span>
+                        <input onChange={handleChange} checked={sidebarData.type === 'room'} type="radio" name="listingType" id="room" className="w-5"/>
+                        <label htmlFor="room" className="cursor-pointer">Room</label>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.type === 'meetingRoom'} type="radio" name="listingType" id="meetingRoom" className="w-5"/>
+                        <label htmlFor="meetingRoom" className="cursor-pointer">Meeting Room</label>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.type === 'eventSpace'} type="radio" name="listingType" id="eventSpace" className="w-5"/>
+                        <label htmlFor="eventSpace" className="cursor-pointer">Event Space</label>
                     </div>
                 </div>
                 <div className="flex gap-2 flex-wrap items-center">
@@ -146,6 +154,10 @@ export default function Search() {
                         <input onChange={handleChange} checked={sidebarData.furnished} type="checkbox" id="furnished" className="w-5"/>
                         <span>Furnished</span>
                     </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.offer} type="checkbox" id="offer" className="w-5"/>
+                        <span>Offer</span>
+                    </div>
                 </div>
                 <div className="flex items-center gap-2">
                     <label className="font-semibold">Sort:</label>
@@ -155,6 +167,9 @@ export default function Search() {
                         <option value='createdAt_desc'>Latest</option>
                         <option value='createdAt_asc'>Oldest</option>
                     </select>
+                </div>
+                <div>
+                    <label className="font-semibold">Price:</label>
                 </div>
                 <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">
                     Search

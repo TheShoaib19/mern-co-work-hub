@@ -15,7 +15,7 @@ export default function CreateListing() {
         name: '',
         description: '',
         address: '',
-        type: 'rent',
+        type: 'floor',
         bedrooms: 1,
         bathrooms: 1,
         regularPrice: 50,
@@ -78,7 +78,7 @@ export default function CreateListing() {
     };
 
     const handleChange = (e) =>{
-        if(e.target.id === 'sale' || e.target.id === 'rent'){
+        if(e.target.id === 'desk' || e.target.id === 'floor' || e.target.id === 'meetingRoom' || e.target.id === 'eventSpace' || e.target.id === 'room'){
             setFormData({...formData, type: e.target.id});
         }
         if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
@@ -128,15 +128,31 @@ export default function CreateListing() {
                 <input onChange={handleChange} value={formData.name} type="text" placeholder='Name' className='border p-3 rounded-lg' id='name' maxLength='62' minLength='10' required/>
                 <textarea onChange={handleChange} value={formData.description} type="text" placeholder='Description' className='border p-3 rounded-lg' id='description' required/>
                 <input onChange={handleChange} value={formData.address} type="text" placeholder='Address' className='border p-3 rounded-lg' id='address' required/>
+                <p className='font-semibold'>Listing Type:</p>
                 <div className='flex gap-6 flex-wrap'>
                     <div className="flex gap-2">
-                        <input type="radio" name="listingType" id="sale" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'sale'} />
-                        <label htmlFor="sale" className="cursor-pointer">Sale</label>
+                        <input type="radio" name="listingType" id="desk" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'desk'} />
+                        <label htmlFor="desk" className="cursor-pointer">Desk</label>
                     </div>
                     <div className="flex gap-2">
-                        <input type="radio" name="listingType" id="rent" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'rent'}/>
-                        <label htmlFor="rent" className="cursor-pointer">Rent</label>
+                        <input type="radio" name="listingType" id="floor" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'floor'}/>
+                        <label htmlFor="floor" className="cursor-pointer">Floor</label>
                     </div>
+                    <div className="flex gap-2">
+                        <input type="radio" name="listingType" id="room" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'room'}/>
+                        <label htmlFor="room" className="cursor-pointer">Room</label>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="radio" name="listingType" id="meetingRoom" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'meetingRoom'}/>
+                        <label htmlFor="meetingRoom" className="cursor-pointer">Meeting Room</label>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="radio" name="listingType" id="eventSpace" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.type === 'eventSpace'}/>
+                        <label htmlFor="eventSpace" className="cursor-pointer">Event Space</label>
+                    </div>
+                </div>
+                <p className='font-semibold'>Amenities:</p>
+                <div className='flex gap-6 flex-wrap'>
                     <div className="flex gap-2">
                         <input type="checkbox" id="parking" className='w-5' onChange={handleChange} checked={formData.parking}/>
                         <span>Parking Spot</span>
@@ -163,7 +179,7 @@ export default function CreateListing() {
                         <input onChange={handleChange} value={formData.regularPrice} type="number" id='regularPrice' className='p-3 border border-gray-300 rounded-lg' min='50' max='1000000' required/>
                         <div className='flex flex-col items-center'>
                             <p>Regular Price</p>
-                            {formData.type === 'rent' && (
+                            {formData.type === 'floor' && (
                                 <span className='text-xs'>($ / month)</span>
                             )}
                         </div>
@@ -173,7 +189,7 @@ export default function CreateListing() {
                             <input onChange={handleChange} value={formData.discountPrice} type="number" id='discountPrice' className='p-3 border border-gray-300 rounded-lg' min='0' max='10000000' required/>
                             <div className='flex flex-col items-center'>
                                 <p>Discounted Price</p>
-                                {formData.type === 'rent' && (
+                                {formData.type === 'floor' && (
                                     <span className='text-xs'>($ / month)</span>
                                 )}
                             </div>
