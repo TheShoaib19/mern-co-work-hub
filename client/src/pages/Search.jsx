@@ -120,16 +120,16 @@ export default function Search() {
                 <div className="flex gap-2 flex-wrap items-center">
                     <label className="font-semibold">Type: </label>
                     <div className="flex gap-2">
-                        <input onChange={handleChange} checked={sidebarData.type === 'all'} type="checkbox" id="all" className="w-5"/>
-                        <span>All</span>
+                        <input onChange={handleChange} checked={sidebarData.type === 'all'} type="radio" name="listingType" id="all" className="w-5"/>
+                        <label htmlFor="all" className="cursor-pointer">All</label>
                     </div>
                     <div className="flex gap-2">
-                        <input onChange={handleChange} checked={sidebarData.type === 'rent'} type="checkbox" id="rent" className="w-5"/>
-                        <span>Rent</span>
+                        <input onChange={handleChange} checked={sidebarData.type === 'rent'} type="radio" name="listingType" id="rent" className="w-5"/>
+                        <label htmlFor="rent" className="cursor-pointer">Rent</label>
                     </div>
                     <div className="flex gap-2">
-                        <input onChange={handleChange} checked={sidebarData.type === 'sale'} type="checkbox" id="sale" className="w-5"/>
-                        <span>Sale</span>
+                        <input onChange={handleChange} checked={sidebarData.type === 'sale'} type="radio" name="listingType" id="sale" className="w-5"/>
+                        <label htmlFor="sale" className="cursor-pointer">Sale</label>
                     </div>
                     <div className="flex gap-2">
                         <input onChange={handleChange} checked={sidebarData.offer} type="checkbox" id="offer" className="w-5"/>
