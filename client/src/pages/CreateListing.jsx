@@ -15,7 +15,7 @@ export default function CreateListing() {
         name: '',
         description: '',
         address: '',
-        type: 'floor',
+        type: 'desk',
         bedrooms: 1,
         bathrooms: 1,
         regularPrice: 50,
@@ -23,6 +23,7 @@ export default function CreateListing() {
         offer: false,
         parking: false,
         furnished: false,
+        timeIntervalType: 'perWeek'
     });
     const [imageUploadError, setImageUploadError] = useState(false);
     const [uploading, setUploading] = useState(false);
@@ -86,6 +87,9 @@ export default function CreateListing() {
         }
         if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === 'textarea'){
             setFormData({...formData, [e.target.id]: e.target.value});
+        }
+        if(e.target.id === 'perDay' || e.target.id === 'perHour' || e.target.id === 'perWeek' || e.target.id === 'perMonth' || e.target.id === 'perYear'){
+            setFormData({...formData, timeIntervalType: e.target.id});
         }
     };
 
@@ -151,6 +155,116 @@ export default function CreateListing() {
                         <label htmlFor="eventSpace" className="cursor-pointer">Event Space</label>
                     </div>
                 </div>
+
+                {/* Desk Section Starts */}
+                {formData.type === 'desk' && (
+                    <div>
+                        <p className='font-semibold'>Time Interval:</p>
+                        <div className='flex gap-6 flex-wrap'>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perWeek" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perWeek'}/>
+                                <label htmlFor="perWeek" className="cursor-pointer">Per Week</label>
+                            </div>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perMonth" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perMonth'}/>
+                                <label htmlFor="perMonth" className="cursor-pointer">Per Month</label>
+                            </div>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perYear" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perYear'} />
+                                <label htmlFor="perYear" className="cursor-pointer">Per Year</label>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {formData.type === 'desk' && (formData.timeIntervalType === 'perMonth' || formData.timeIntervalType === 'perYear' || formData.timeIntervalType === 'perWeek') && (
+                    <h1>DESK CHAAANN</h1>
+                )}
+                {/* Desk Section Ends */}
+
+                {/* Floor Section Starts */}
+                {formData.type === 'floor' && (
+                    <div>
+                        <p className='font-semibold'>Time Interval:</p>
+                        <div className='flex gap-6 flex-wrap'>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perMonth" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perMonth'}/>
+                                <label htmlFor="perMonth" className="cursor-pointer">Per Month</label>
+                            </div>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perYear" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perYear'} />
+                                <label htmlFor="perYear" className="cursor-pointer">Per Year</label>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {formData.type === 'floor' && (formData.timeIntervalType === 'perMonth' || formData.timeIntervalType === 'perYear') && (
+                    <h1>FLOOR SAYS OOGGAAAAAA BOOOGAAAA</h1>
+                )}
+                {/* Floor Section Ends */}
+
+                {/* Room Section Starts */}
+                {formData.type === 'room' && (
+                    <div>
+                        <p className='font-semibold'>Time Interval:</p>
+                        <div className='flex gap-6 flex-wrap'>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perMonth" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perMonth'}/>
+                                <label htmlFor="perMonth" className="cursor-pointer">Per Month</label>
+                            </div>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perYear" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perYear'} />
+                                <label htmlFor="perYear" className="cursor-pointer">Per Year</label>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {formData.type === 'room' && (formData.timeIntervalType === 'perMonth' || formData.timeIntervalType === 'perYear') && (
+                    <h1>ROOM SAYS KONICHIWA</h1>
+                )}
+                {/* Room Section Ends */}
+
+                {/* Event Space Section Starts */}
+                {formData.type === 'eventSpace' && (
+                    <div>
+                        <p className='font-semibold'>Time Interval:</p>
+                        <div className='flex gap-6 flex-wrap'>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perHour" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perHour'}/>
+                                <label htmlFor="perHour" className="cursor-pointer">Per Hour</label>
+                            </div>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perDay" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perDay'} />
+                                <label htmlFor="perDay" className="cursor-pointer">Per Day</label>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {formData.type === 'eventSpace' && (formData.timeIntervalType === 'perHour' || formData.timeIntervalType === 'perDay') && (
+                    <h1>hello</h1>
+                )}
+                {/* Event Space Section Ends */}
+
+                {/* Meeting Room Section Starts*/}
+                {formData.type === 'meetingRoom' && (
+                    <div>
+                        <p className='font-semibold'>Time Interval:</p>
+                        <div className='flex gap-6 flex-wrap'>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perHour" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perHour'}/>
+                                <label htmlFor="perHour" className="cursor-pointer">Per Hour</label>
+                            </div>
+                            <div className="flex gap-2">
+                                <input type="radio" name="timeIntervalType" id="perDay" className='w-5 cursor-pointer' onChange={handleChange} checked={formData.timeIntervalType === 'perDay'} />
+                                <label htmlFor="perDay" className="cursor-pointer">Per Day</label>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {formData.type === 'meetingRoom' && (formData.timeIntervalType === 'perHour' || formData.timeIntervalType === 'perDay') && (
+                    <h2>meeting room says hi</h2>
+                )}
+                {/* Meeting Room Section Ends*/}
+                
                 <p className='font-semibold'>Amenities:</p>
                 <div className='flex gap-6 flex-wrap'>
                     <div className="flex gap-2">

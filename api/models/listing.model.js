@@ -49,6 +49,10 @@ const listingSchema = new mongoose.Schema({
         type: Array,
         required: true,
     },
+    timeIntervalType:{
+        type: String,
+        required: true,
+    },
     userRef:{
         type: String,
         required: true,
