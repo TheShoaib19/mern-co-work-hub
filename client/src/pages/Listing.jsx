@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import 'swiper/css/bundle';
 import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa';
 import Contact from '../components/Contact';
+import Reviews from '../components/Reviews';
+import ReviewForm from '../components/ReviewForm';
 
 
 export default function Listing() {
@@ -113,11 +115,15 @@ export default function Listing() {
                         </li>
                     </ul>
                     { currentUser && listing.userRef !== currentUser._id && !contact && (
-                        <button onClick={() => setContact(true)} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 '>
+                        <button onClick={() => setContact(true)} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>
                             Contact Owner
                         </button>
                     )}
                     {contact && <Contact listing={listing}/>}
+                    <Reviews listing={listing} />
+                    { listing.userRef !== currentUser._id &&(
+                        <ReviewForm user={currentUser} listing={listing} />
+                    )}
                 </div>
             </div>
         )}
