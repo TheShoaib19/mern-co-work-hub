@@ -72,7 +72,7 @@ export const forgotPassword = async (req, res, next) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
         // Generate a unique token for password reset
-        const token = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
+        const token = Math.random().toString(36).slice(-12) + Math.random().toString(36).slice(-16)
         // Store the token in the database
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 300000; // Token expires in 5 minutes
