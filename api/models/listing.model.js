@@ -57,6 +57,12 @@ const listingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    // reviews should be here but it's not working at the moment
+    reviews: [{ 
+        type: mongoose.Types.ObjectId, 
+        ref: "Review" }],
+    averageRating: { type: Number, default: 0 },
+    reviewCount: { type: Number, default: 0 },
 }, {timestamps: true});
 
 const Listing = mongoose.model('Listing', listingSchema);

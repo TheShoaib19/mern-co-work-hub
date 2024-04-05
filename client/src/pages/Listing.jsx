@@ -121,7 +121,7 @@ export default function Listing() {
                     )}
                     {contact && <Contact listing={listing}/>}
                     <Reviews listing={listing} />
-                    { listing.userRef !== currentUser._id &&(
+                    {currentUser && listing.userRef !== currentUser._id &&(
                         <ReviewForm user={currentUser} listing={listing} />
                     )}
                 </div>

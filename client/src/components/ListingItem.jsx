@@ -21,6 +21,9 @@ export default function ListingItem({listing}) {
                 </p>
                 <div className='flex gap-4 text-slate-700'>
                     <div className="font-bold text-xs">
+                        {listing.averageRating ? listing.averageRating.toFixed(1) : 'No'} stars ({listing.reviewCount || 0} reviews)
+                    </div>
+                    <div className="font-bold text-xs">
                         {listing.bedrooms > 1 ? `${listing.bedrooms} beds` : `${listing.bedrooms} bed`}
                     </div>
                     <div className="font-bold text-xs">
