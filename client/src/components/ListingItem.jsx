@@ -17,7 +17,11 @@ export default function ListingItem({listing}) {
                 <p className='text-slate-500 mt-2 font-semibold'>
                     PKR{' '}
                     {listing.offer ? listing.discountPrice.toLocaleString('en-US') : listing.regularPrice.toLocaleString('en-US')}
-                    {listing.type === 'floor' && ' /month'}
+                    {listing.timeIntervalType === 'perHour' && '/hr'}
+                    {listing.timeIntervalType === 'perDay' && '/day'}
+                    {listing.timeIntervalType === 'perWeek' && '/week'}
+                    {listing.timeIntervalType === 'perMonth' && '/month'}
+                    {listing.timeIntervalType === 'perYear' && '/year'}
                 </p>
                 <div className='flex gap-4 text-slate-700'>
                     <div className="font-bold text-xs">

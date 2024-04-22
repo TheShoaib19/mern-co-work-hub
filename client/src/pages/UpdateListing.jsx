@@ -308,8 +308,20 @@ export default function UpdateListing() {
                         <input onChange={handleChange} value={formData.regularPrice} type="number" id='regularPrice' className='p-3 border border-gray-300 rounded-lg' min='50' max='1000000' required/>
                         <div className='flex flex-col items-center'>
                             <p>Regular Price</p>
-                            {formData.type === 'floor' && (
-                                <span className='text-xs'>($ / month)</span>
+                            {formData.timeIntervalType === 'perHour' && (
+                                <span className='text-xs'>(PKR/hr)</span>
+                            )}
+                            {formData.timeIntervalType === 'perDay' && (
+                                <span className='text-xs'>(PKR/day)</span>
+                            )}
+                            {formData.timeIntervalType === 'perWeek' && (
+                                <span className='text-xs'>(PKR/week)</span>
+                            )}
+                            {formData.timeIntervalType === 'perMonth' && (
+                                <span className='text-xs'>(PKR/month)</span>
+                            )}
+                            {formData.timeIntervalType === 'perYear' && (
+                                <span className='text-xs'>(PKR/year)</span>
                             )}
                         </div>
                     </div>
