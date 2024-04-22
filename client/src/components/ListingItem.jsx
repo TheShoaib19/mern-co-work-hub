@@ -27,12 +27,6 @@ export default function ListingItem({listing}) {
                     <div className="font-bold text-xs">
                         {listing.averageRating ? listing.averageRating.toFixed(1) : 'No'} stars ({listing.reviewCount || 0} reviews)
                     </div>
-                    <div className="font-bold text-xs">
-                        {listing.bedrooms > 1 ? `${listing.bedrooms} beds` : `${listing.bedrooms} bed`}
-                    </div>
-                    <div className="font-bold text-xs">
-                        {listing.bathrooms > 1 ? `${listing.bathrooms} baths` : `${listing.bathrooms} bath`}
-                    </div>
                 </div>
             </div>
         </Link>

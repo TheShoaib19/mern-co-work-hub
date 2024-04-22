@@ -17,10 +17,9 @@ export default function UpdateListing() {
         description: '',
         address: '',
         type: 'desk',
-        bedrooms: 1,
-        bathrooms: 1,
         regularPrice: 50,
         discountPrice: 0,
+        numberOfChairs: 0,
         offer: false,
         parking: false,
         furnished: false,
@@ -191,9 +190,6 @@ export default function UpdateListing() {
                         </div>
                     </div>
                 )}
-                {formData.type === 'desk' && (formData.timeIntervalType === 'perMonth' || formData.timeIntervalType === 'perYear' || formData.timeIntervalType === 'perWeek') && (
-                    <h1>DESK CHAAANN</h1>
-                )}
                 {/* Desk Section Ends */}
 
                 {/* Floor Section Starts */}
@@ -211,9 +207,6 @@ export default function UpdateListing() {
                             </div>
                         </div>
                     </div>
-                )}
-                {formData.type === 'floor' && (formData.timeIntervalType === 'perMonth' || formData.timeIntervalType === 'perYear') && (
-                    <h1>FLOOR SAYS OOGGAAAAAA BOOOGAAAA</h1>
                 )}
                 {/* Floor Section Ends */}
 
@@ -233,9 +226,6 @@ export default function UpdateListing() {
                         </div>
                     </div>
                 )}
-                {formData.type === 'room' && (formData.timeIntervalType === 'perMonth' || formData.timeIntervalType === 'perYear') && (
-                    <h1>ROOM SAYS KONICHIWA</h1>
-                )}
                 {/* Room Section Ends */}
 
                 {/* Event Space Section Starts */}
@@ -253,9 +243,6 @@ export default function UpdateListing() {
                             </div>
                         </div>
                     </div>
-                )}
-                {formData.type === 'eventSpace' && (formData.timeIntervalType === 'perHour' || formData.timeIntervalType === 'perDay') && (
-                    <h1>hello</h1>
                 )}
                 {/* Event Space Section Ends */}
 
@@ -275,11 +262,22 @@ export default function UpdateListing() {
                         </div>
                     </div>
                 )}
-                {formData.type === 'meetingRoom' && (formData.timeIntervalType === 'perHour' || formData.timeIntervalType === 'perDay') && (
-                    <h2>meeting room says hi</h2>
-                )}
                 {/* Meeting Room Section Ends*/}
-
+                {/* Number of Chairs for meeting room, room and event space starts*/}
+                {(formData.type === 'meetingRoom' || formData.type === 'room' || formData.type === 'eventSpace') && (
+                    <div className='flex items-center gap-2'>
+                        <input onChange={handleChange} value={formData.numberOfChairs} type="number" id='numberOfChairs' className='p-3 border border-gray-300 rounded-lg' min='0' max='10000000' required/>
+                        <div className='flex flex-col items-center'>
+                            {(formData.type === 'meetingRoom' || formData.type === 'room') && (
+                                <p>Number of Chairs</p>
+                            )}
+                            {(formData.type === 'eventSpace') && (
+                                <p>Person Availability</p>
+                            )}
+                        </div>
+                    </div>                
+                )}
+                {/* Number of Chairs for meeting room, room and event space ends*/}
                 <p className='font-semibold'>Amenities:</p>
                 <div className="flex gap-6 flex-wrap">
                     <div className="flex gap-2">
@@ -296,14 +294,6 @@ export default function UpdateListing() {
                     </div>
                 </div>
                 <div className='flex flex-wrap gap-6'>
-                    <div className='flex items-center gap-2'>
-                        <input onChange={handleChange} value={formData.bedrooms} type="number" id='bedrooms' className='p-3 border border-gray-300 rounded-lg' min='1' max='10' required/>
-                        <p>Beds</p>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                        <input onChange={handleChange} value={formData.bathrooms} type="number" id='bathrooms' className='p-3 border border-gray-300 rounded-lg' min='1' max='10' required/>
-                        <p>Baths</p>
-                    </div>
                     <div className='flex items-center gap-2'>
                         <input onChange={handleChange} value={formData.regularPrice} type="number" id='regularPrice' className='p-3 border border-gray-300 rounded-lg' min='50' max='1000000' required/>
                         <div className='flex flex-col items-center'>

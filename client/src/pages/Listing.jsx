@@ -5,7 +5,7 @@ import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
 import 'swiper/css/bundle';
-import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa';
+import { FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa';
 import Contact from '../components/Contact';
 import Reviews from '../components/Reviews';
 import ReviewForm from '../components/ReviewForm';
@@ -102,20 +102,16 @@ export default function Listing() {
                     </p>
                     <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
                         <li className='flex items-center gap-1 whitespace-nowrap '>
-                            <FaBed className='text-lg' />
-                            {listing.bedrooms > 1 ? `${listing.bedrooms} beds ` : `${listing.bedrooms} bed `}
-                        </li>
-                        <li className='flex items-center gap-1 whitespace-nowrap '>
-                            <FaBath className='text-lg' />
-                            {listing.bathrooms > 1 ? `${listing.bathrooms} baths ` : `${listing.bathrooms} bath `}
-                        </li>
-                        <li className='flex items-center gap-1 whitespace-nowrap '>
                             <FaParking className='text-lg' />
                             {listing.parking ? 'Parking spot' : 'No Parking'}
                         </li>
+                        {listing.furnished && (
+                            <li className='flex items-center gap-1 whitespace-nowrap '>
+                                {listing.furnished ?<span className='flex gap-1'><FaChair className='text-lg'/>Furnished</span>: 'Unfurnished'}
+                            </li>
+                        )}
                         <li className='flex items-center gap-1 whitespace-nowrap '>
-                            <FaChair className='text-lg' />
-                            {listing.furnished ? 'Furnished' : 'Unfurnished'}
+                            {listing.numberOfChairs ? listing.numberOfChairs : ''}
                         </li>
                     </ul>
                     { currentUser && listing.userRef !== currentUser._id && !contact && (
