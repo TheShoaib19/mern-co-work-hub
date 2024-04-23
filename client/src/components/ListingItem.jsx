@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdLocationOn } from 'react-icons/md'
+import { FaArchive, FaCamera, FaCarBattery, FaChair, FaChartPie, FaDrumstickBite, FaDumbbell, FaGamepad, FaIdCard, FaMugHot, FaParking, FaPhone, FaPray, FaPrint, FaRestroom, FaUserShield, FaWifi, FaWind, FaWineBottle } from 'react-icons/fa';
 
 export default function ListingItem({listing}) {
   return (
@@ -26,6 +27,103 @@ export default function ListingItem({listing}) {
                 <div className='flex gap-4 text-slate-700'>
                     <div className="font-bold text-xs">
                         {listing.averageRating ? listing.averageRating.toFixed(1) : 'No'} stars ({listing.reviewCount || 0} reviews)
+                    </div>
+                    <div className='flex gap-2'>
+                        {listing.parking && (
+                            <div className="font-bold text-xs">
+                                <FaParking className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.furnished && (
+                            <div className="font-bold text-xs">
+                                <FaChair className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.wifi && (
+                            <div className="font-bold text-xs">
+                                <FaWifi className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.generator && (
+                            <div className="font-bold text-xs">
+                                <FaCarBattery className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.cctv && (
+                            <div className="font-bold text-xs">
+                                <FaCamera className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.prayingArea && (
+                            <div className="font-bold text-xs">
+                                <FaPray className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.frontDeskService && (
+                            <div className="font-bold text-xs">
+                                <FaPhone className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.personalLocker && (
+                            <div className="font-bold text-xs">
+                                <FaArchive className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.printScan && (
+                            <div className="font-bold text-xs">
+                                <FaPrint className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.cafeteria && (
+                            <div className="font-bold text-xs">
+                                <FaDrumstickBite className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.gamingZone && (
+                            <div className="font-bold text-xs">
+                                <FaGamepad className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.fullyAC && (
+                            <div className="font-bold text-xs">
+                                <FaWind className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.conference && (
+                            <div className="font-bold text-xs">
+                                <FaChartPie className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.restRoom && (
+                            <div className="font-bold text-xs">
+                                <FaRestroom className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.rfidAccess && (
+                            <div className="font-bold text-xs">
+                                <FaIdCard className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.gym && (
+                            <div className="font-bold text-xs">
+                                <FaDumbbell className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.water && (
+                            <div className="font-bold text-xs">
+                                <FaWineBottle className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.complimentaryTea && (
+                            <div className="font-bold text-xs">
+                                <FaMugHot className='text-lg'/>
+                            </div>
+                        )}
+                        {listing.security && (
+                            <div className="font-bold text-xs">
+                                <FaUserShield className='text-lg'/>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

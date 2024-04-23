@@ -33,6 +33,74 @@ const listingSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    wifi:{
+        type: Boolean,
+        required: true,
+    },
+    generator:{
+        type: Boolean,
+        required: true,
+    },
+    cctv:{
+        type: Boolean,
+        required: true,
+    },
+    prayingArea:{
+        type: Boolean,
+        required: true,
+    },
+    frontDeskService:{
+        type: Boolean,
+        required: true,
+    },
+    personalLocker:{
+        type: Boolean,
+        required: true,
+    },
+    printScan:{
+        type: Boolean,
+        required: true,
+    },
+    cafeteria:{
+        type: Boolean,
+        required: true,
+    },
+    gamingZone:{
+        type: Boolean,
+        required: true,
+    },
+    fullyAC:{
+        type: Boolean,
+        required: true,
+    },
+    conference:{
+        type: Boolean,
+        required: true,
+    },
+    restRoom:{
+        type: Boolean,
+        required: true,
+    },
+    rfidAccess:{
+        type: Boolean,
+        required: true,
+    },
+    gym:{
+        type: Boolean,
+        required: true,
+    },
+    water:{
+        type: Boolean,
+        required: true,
+    },
+    complimentaryTea:{
+        type: Boolean,
+        required: true,
+    },
+    security:{
+        type: Boolean,
+        required: true,
+    },
     type:{
         type: String,
         required: true,

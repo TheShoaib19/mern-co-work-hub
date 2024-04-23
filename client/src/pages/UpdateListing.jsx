@@ -22,6 +22,23 @@ export default function UpdateListing() {
         numberOfChairs: 0,
         offer: false,
         parking: false,
+        wifi: false,
+        generator: false,
+        cctv: false,
+        prayingArea: false,
+        frontDeskService: false,
+        personalLocker: false,
+        printScan: false,
+        cafeteria: false,
+        gamingZone: false,
+        fullyAC: false,
+        conference: false,
+        restRoom: false,
+        rfidAccess: false,
+        gym: false,
+        water: false,
+        complimentaryTea: false,
+        security: false,
         furnished: false,
         timeIntervalType: 'perWeek',
     });
@@ -96,7 +113,7 @@ export default function UpdateListing() {
         if(e.target.id === 'desk' || e.target.id === 'floor' || e.target.id === 'meetingRoom' || e.target.id === 'eventSpace' || e.target.id === 'room'){
             setFormData({...formData, type: e.target.id});
         }
-        if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
+        if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer' || e.target.id === 'wifi' || e.target.id === 'generator' || e.target.id === 'cctv' || e.target.id === 'prayingArea' || e.target.id === 'frontDeskService' || e.target.id === 'personalLocker' || e.target.id === 'printScan' || e.target.id === 'cafeteria' || e.target.id === 'gamingZone' || e.target.id === 'fullyAC' || e.target.id === 'conference' || e.target.id === 'restRoom' || e.target.id === 'rfidAccess' || e.target.id === 'gym' || e.target.id === 'water' || e.target.id === 'complimentaryTea' || e.target.id === 'security'){
             setFormData({...formData, [e.target.id]: e.target.checked});
         }
         if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === 'textarea'){
@@ -287,6 +304,74 @@ export default function UpdateListing() {
                     <div className="flex gap-2">
                         <input type="checkbox" id="furnished" className='w-5' onChange={handleChange} checked={formData.furnished}/>
                         <span>Furnished</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="wifi" className='w-5' onChange={handleChange} checked={formData.wifi}/>
+                        <span>Wi-fi</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="generator" className='w-5' onChange={handleChange} checked={formData.generator}/>
+                        <span>Generator</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="cctv" className='w-5' onChange={handleChange} checked={formData.cctv}/>
+                        <span>CCTV surveillance</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="prayingArea" className='w-5' onChange={handleChange} checked={formData.prayingArea}/>
+                        <span>Praying Area</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="frontDeskService" className='w-5' onChange={handleChange} checked={formData.frontDeskService}/>
+                        <span>Front Desk</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="personalLocker" className='w-5' onChange={handleChange} checked={formData.personalLocker}/>
+                        <span>Personal Locker</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="printScan" className='w-5' onChange={handleChange} checked={formData.printScan}/>
+                        <span>Print & Scan</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="cafeteria" className='w-5' onChange={handleChange} checked={formData.cafeteria}/>
+                        <span>Cafeteria</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="gamingZone" className='w-5' onChange={handleChange} checked={formData.gamingZone}/>
+                        <span>Gaming Zone</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="fullyAC" className='w-5' onChange={handleChange} checked={formData.fullyAC}/>
+                        <span>Air Conditioned</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="conference" className='w-5' onChange={handleChange} checked={formData.conference}/>
+                        <span>Conference Room</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="restRoom" className='w-5' onChange={handleChange} checked={formData.restRoom}/>
+                        <span>Rest Room</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="rfidAccess" className='w-5' onChange={handleChange} checked={formData.rfidAccess}/>
+                        <span>RFID Access</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="gym" className='w-5' onChange={handleChange} checked={formData.gym}/>
+                        <span>Gym</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="water" className='w-5' onChange={handleChange} checked={formData.water}/>
+                        <span>Mineral Water</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="complimentaryTea" className='w-5' onChange={handleChange} checked={formData.complimentaryTea}/>
+                        <span>Complimentary Tea</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input type="checkbox" id="security" className='w-5' onChange={handleChange} checked={formData.security}/>
+                        <span>Security</span>
                     </div>
                     <div className="flex gap-2">
                         <input type="checkbox" id="offer" className='w-5' onChange={handleChange} checked={formData.offer}/>

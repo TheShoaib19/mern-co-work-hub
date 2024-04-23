@@ -9,6 +9,23 @@ export default function Search() {
         searchTerm: '',
         type: 'all',
         parking: false,
+        wifi: false,
+        generator: false,
+        cctv: false,
+        prayingArea: false,
+        frontDeskService: false,
+        personalLocker: false,
+        printScan: false,
+        cafeteria: false,
+        gamingZone: false,
+        fullyAC: false,
+        conference: false,
+        restRoom: false,
+        rfidAccess: false,
+        gym: false,
+        water: false,
+        complimentaryTea: false,
+        security: false,
         furnished: false,
         offer: false,
         sort: 'created_at',
@@ -23,16 +40,50 @@ export default function Search() {
         const searchTermFromUrl = urlParams.get('searchTerm');
         const typeFromUrl = urlParams.get('type');
         const parkingFromUrl = urlParams.get('parking');
+        const wifiFromUrl = urlParams.get('wifi');
+        const generatorFromUrl = urlParams.get('generator');
+        const cctvFromUrl = urlParams.get('cctv');
+        const prayingAreaFromUrl = urlParams.get('prayingArea');
+        const frontDeskServiceFromUrl = urlParams.get('frontDeskService');
+        const personalLockerFromUrl = urlParams.get('personalLocker');
+        const printScanFromUrl = urlParams.get('printScan');
+        const cafeteriaFromUrl = urlParams.get('cafeteria');
+        const gamingZoneFromUrl = urlParams.get('gamingZone');
+        const fullyACFromUrl = urlParams.get('fullyAC');
+        const conferenceFromUrl = urlParams.get('conference');
+        const restRoomFromUrl = urlParams.get('restRoom');
+        const rfidAccessFromUrl = urlParams.get('rfidAccess');
+        const gymFromUrl = urlParams.get('gym');
+        const waterFromUrl = urlParams.get('water');
+        const complimentaryTeaFromUrl = urlParams.get('complimentaryTea');
+        const securityFromUrl = urlParams.get('security');
         const furnishedFromUrl = urlParams.get('furnished');
         const offerFromUrl = urlParams.get('offer');
         const sortFromUrl = urlParams.get('sort');
         const orderFromUrl = urlParams.get('order');
 
-        if(searchTermFromUrl || typeFromUrl || parkingFromUrl || furnishedFromUrl || offerFromUrl || sortFromUrl || orderFromUrl){
+        if(searchTermFromUrl || typeFromUrl || parkingFromUrl || wifiFromUrl || generatorFromUrl || cctvFromUrl || prayingAreaFromUrl || frontDeskServiceFromUrl || personalLockerFromUrl || printScanFromUrl || cafeteriaFromUrl || gamingZoneFromUrl || fullyACFromUrl || conferenceFromUrl || restRoomFromUrl || rfidAccessFromUrl || gymFromUrl || waterFromUrl || complimentaryTeaFromUrl || securityFromUrl ||  furnishedFromUrl || offerFromUrl || sortFromUrl || orderFromUrl){
             setSidebarData({
                 searchTerm: searchTermFromUrl || '',
                 type: typeFromUrl || 'all',
                 parking: parkingFromUrl === 'true' ? true : false,
+                wifi: wifiFromUrl === 'true' ? true : false,
+                generator: generatorFromUrl === 'true' ? true : false,
+                cctv: cctvFromUrl === 'true' ? true : false,
+                prayingArea: prayingAreaFromUrl === 'true' ? true : false,
+                frontDeskService: frontDeskServiceFromUrl === 'true' ? true : false,
+                personalLocker: personalLockerFromUrl === 'true' ? true : false,
+                printScan: printScanFromUrl === 'true' ? true : false,
+                cafeteria: cafeteriaFromUrl === 'true' ? true : false,
+                gamingZone: gamingZoneFromUrl === 'true' ? true : false,
+                fullyAC: fullyACFromUrl === 'true' ? true : false,
+                conference: conferenceFromUrl === 'true' ? true : false,
+                restRoom: restRoomFromUrl === 'true' ? true : false,
+                rfidAccess: rfidAccessFromUrl === 'true' ? true : false,
+                gym: gymFromUrl === 'true' ? true : false,
+                water: waterFromUrl === 'true' ? true : false,
+                complimentaryTea: complimentaryTeaFromUrl === 'true' ? true : false,
+                security: securityFromUrl === 'true' ? true : false,
                 furnished: furnishedFromUrl === 'true' ? true : false,
                 offer: offerFromUrl === 'true' ? true : false,
                 sort: sortFromUrl || 'created_at',
@@ -67,7 +118,7 @@ export default function Search() {
         if(e.target.id === 'searchTerm'){
             setSidebarData({...sidebarData, searchTerm: e.target.value});
         }
-        if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
+        if(e.target.id === 'parking' || e.target.id === 'wifi' || e.target.id === 'generator' || e.target.id === 'cctv' || e.target.id === 'prayingArea' || e.target.id === 'frontDeskService' || e.target.id === 'personalLocker' || e.target.id === 'printScan' || e.target.id === 'cafeteria' || e.target.id === 'gamingZone' || e.target.id === 'fullyAC' || e.target.id === 'conference' || e.target.id === 'restRoom' || e.target.id === 'rfidAccess' || e.target.id === 'gym' || e.target.id === 'water' || e.target.id === 'complimentaryTea' || e.target.id === 'security' || e.target.id === 'furnished' || e.target.id === 'offer'){
             setSidebarData({
                 ...sidebarData,
                 [e.target.id]: e.target.checked || e.target.checked === 'true' ? true : false
@@ -89,6 +140,23 @@ export default function Search() {
         urlParams.set('searchTerm', sidebarData.searchTerm);
         urlParams.set('type', sidebarData.type);
         urlParams.set('parking', sidebarData.parking);
+        urlParams.set('wifi', sidebarData.wifi);
+        urlParams.set('generator', sidebarData.generator);
+        urlParams.set('cctv', sidebarData.cctv);
+        urlParams.set('prayingArea', sidebarData.prayingArea);
+        urlParams.set('frontDeskService', sidebarData.frontDeskService);
+        urlParams.set('personalLocker', sidebarData.personalLocker);
+        urlParams.set('printScan', sidebarData.printScan);
+        urlParams.set('cafeteria', sidebarData.cafeteria);
+        urlParams.set('gamingZone', sidebarData.gamingZone);
+        urlParams.set('fullyAC', sidebarData.fullyAC);
+        urlParams.set('conference', sidebarData.conference);
+        urlParams.set('restRoom', sidebarData.restRoom);
+        urlParams.set('rfidAccess', sidebarData.rfidAccess);
+        urlParams.set('gym', sidebarData.gym);
+        urlParams.set('water', sidebarData.water);
+        urlParams.set('complimentaryTea', sidebarData.complimentaryTea);
+        urlParams.set('security', sidebarData.security);
         urlParams.set('furnished', sidebarData.furnished);
         urlParams.set('offer', sidebarData.offer);
         urlParams.set('sort', sidebarData.sort);
@@ -153,6 +221,74 @@ export default function Search() {
                     <div className="flex gap-2">
                         <input onChange={handleChange} checked={sidebarData.furnished} type="checkbox" id="furnished" className="w-5"/>
                         <span>Furnished</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.wifi} type="checkbox" id="wifi" className="w-5"/>
+                        <span>Wi-Fi</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.generator} type="checkbox" id="generator" className="w-5"/>
+                        <span>Generator</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.cctv} type="checkbox" id="cctv" className="w-5"/>
+                        <span>CCTV</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.prayingArea} type="checkbox" id="prayingArea" className="w-5"/>
+                        <span>Praying Area</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.frontDeskService} type="checkbox" id="frontDeskService" className="w-5"/>
+                        <span>Front Desk</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.personalLocker} type="checkbox" id="personalLocker" className="w-5"/>
+                        <span>Personal Locker</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.printScan} type="checkbox" id="printScan" className="w-5"/>
+                        <span>Print & Scan</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.cafeteria} type="checkbox" id="cafeteria" className="w-5"/>
+                        <span>Cafeteria</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.gamingZone} type="checkbox" id="gamingZone" className="w-5"/>
+                        <span>Gaming Zone</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.fullyAC} type="checkbox" id="fullyAC" className="w-5"/>
+                        <span>Air Conditioned</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.conference} type="checkbox" id="conference" className="w-5"/>
+                        <span>Conference Room</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.restRoom} type="checkbox" id="restRoom" className="w-5"/>
+                        <span>Rest Room</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.rfidAccess} type="checkbox" id="rfidAccess" className="w-5"/>
+                        <span>RFID Access</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.gym} type="checkbox" id="gym" className="w-5"/>
+                        <span>Gym</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.water} type="checkbox" id="water" className="w-5"/>
+                        <span>Mineral Water</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.complimentaryTea} type="checkbox" id="complimentaryTea" className="w-5"/>
+                        <span>Complimentary Tea</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <input onChange={handleChange} checked={sidebarData.security} type="checkbox" id="security" className="w-5"/>
+                        <span>Security</span>
                     </div>
                     <div className="flex gap-2">
                         <input onChange={handleChange} checked={sidebarData.offer} type="checkbox" id="offer" className="w-5"/>
