@@ -38,6 +38,7 @@ export default function UpdateListing() {
         gym: false,
         water: false,
         complimentaryTea: false,
+        area: '',
         security: false,
         furnished: false,
         timeIntervalType: 'perWeek',
@@ -113,6 +114,9 @@ export default function UpdateListing() {
         if(e.target.id === 'desk' || e.target.id === 'floor' || e.target.id === 'meetingRoom' || e.target.id === 'eventSpace' || e.target.id === 'room'){
             setFormData({...formData, type: e.target.id});
         }
+        if(e.target.id === 'area'){
+            setFormData({...formData, area: e.target.value});
+        }
         if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer' || e.target.id === 'wifi' || e.target.id === 'generator' || e.target.id === 'cctv' || e.target.id === 'prayingArea' || e.target.id === 'frontDeskService' || e.target.id === 'personalLocker' || e.target.id === 'printScan' || e.target.id === 'cafeteria' || e.target.id === 'gamingZone' || e.target.id === 'fullyAC' || e.target.id === 'conference' || e.target.id === 'restRoom' || e.target.id === 'rfidAccess' || e.target.id === 'gym' || e.target.id === 'water' || e.target.id === 'complimentaryTea' || e.target.id === 'security'){
             setFormData({...formData, [e.target.id]: e.target.checked});
         }
@@ -163,6 +167,14 @@ export default function UpdateListing() {
                 <input onChange={handleChange} value={formData.name} type="text" placeholder='Name' className='border p-3 rounded-lg' id='name' maxLength='62' minLength='10' required/>
                 <textarea onChange={handleChange} value={formData.description} type="text" placeholder='Description' className='border p-3 rounded-lg' id='description' required/>
                 <input onChange={handleChange} value={formData.address} type="text" placeholder='Address' className='border p-3 rounded-lg' id='address' required/>
+                <div className="flex gap-2 relative">
+                    <select className="border rounded-lg p-3" name="" id="area" onChange={handleChange} value={formData.area}>
+                        <option value="" disabled hidden>Select Area</option>
+                        <option value="Tariq Road">Tariq Road</option>
+                        <option value="Bahadurabad">Bahadurabad</option>
+                        <option value="Defence">Defence</option>
+                    </select>
+                </div>
                 <p className='font-semibold'>Listing Type:</p>
                 <div className='flex gap-6 flex-wrap'>
                     <div className="flex gap-2">

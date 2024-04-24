@@ -164,6 +164,11 @@ export const getListings = async (req, res, next) => {
             type = { $in: ['desk', 'floor', 'room', 'meetingRoom', 'eventSpace']};
         }
 
+        let area = req.query.area;
+        if(area === undefined || area === 'all'){
+            area = { $in: ['Tariq Road', 'Bahadurabad', 'Defence']};
+        }
+
         const searchTerm = req.query.searchTerm || '';
         const sort = req.query.sort || 'createdAt'; 
         const order = req.query.order || 'desc';
@@ -189,6 +194,7 @@ export const getListings = async (req, res, next) => {
             gym,
             water,
             complimentaryTea,
+            area,
             security,
             type,
         }).sort({[sort]: order}).limit(limit).skip(startIndex);

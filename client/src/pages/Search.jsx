@@ -28,6 +28,7 @@ export default function Search() {
         security: false,
         furnished: false,
         offer: false,
+        area: 'all',
         sort: 'created_at',
         order: 'desc'
     });
@@ -60,9 +61,10 @@ export default function Search() {
         const furnishedFromUrl = urlParams.get('furnished');
         const offerFromUrl = urlParams.get('offer');
         const sortFromUrl = urlParams.get('sort');
+        const areaFromUrl = urlParams.get('area');
         const orderFromUrl = urlParams.get('order');
 
-        if(searchTermFromUrl || typeFromUrl || parkingFromUrl || wifiFromUrl || generatorFromUrl || cctvFromUrl || prayingAreaFromUrl || frontDeskServiceFromUrl || personalLockerFromUrl || printScanFromUrl || cafeteriaFromUrl || gamingZoneFromUrl || fullyACFromUrl || conferenceFromUrl || restRoomFromUrl || rfidAccessFromUrl || gymFromUrl || waterFromUrl || complimentaryTeaFromUrl || securityFromUrl ||  furnishedFromUrl || offerFromUrl || sortFromUrl || orderFromUrl){
+        if(searchTermFromUrl || typeFromUrl || parkingFromUrl || wifiFromUrl || generatorFromUrl || cctvFromUrl || prayingAreaFromUrl || frontDeskServiceFromUrl || personalLockerFromUrl || printScanFromUrl || cafeteriaFromUrl || gamingZoneFromUrl || fullyACFromUrl || conferenceFromUrl || restRoomFromUrl || rfidAccessFromUrl || gymFromUrl || waterFromUrl || complimentaryTeaFromUrl || securityFromUrl ||  furnishedFromUrl || offerFromUrl || sortFromUrl || areaFromUrl || orderFromUrl){
             setSidebarData({
                 searchTerm: searchTermFromUrl || '',
                 type: typeFromUrl || 'all',
@@ -87,6 +89,7 @@ export default function Search() {
                 furnished: furnishedFromUrl === 'true' ? true : false,
                 offer: offerFromUrl === 'true' ? true : false,
                 sort: sortFromUrl || 'created_at',
+                area: areaFromUrl || 'all',
                 order: orderFromUrl || 'desc'
             });
         }
@@ -117,6 +120,9 @@ export default function Search() {
         }
         if(e.target.id === 'searchTerm'){
             setSidebarData({...sidebarData, searchTerm: e.target.value});
+        }
+        if(e.target.id === 'area'){
+            setSidebarData({...sidebarData, area: e.target.value});
         }
         if(e.target.id === 'parking' || e.target.id === 'wifi' || e.target.id === 'generator' || e.target.id === 'cctv' || e.target.id === 'prayingArea' || e.target.id === 'frontDeskService' || e.target.id === 'personalLocker' || e.target.id === 'printScan' || e.target.id === 'cafeteria' || e.target.id === 'gamingZone' || e.target.id === 'fullyAC' || e.target.id === 'conference' || e.target.id === 'restRoom' || e.target.id === 'rfidAccess' || e.target.id === 'gym' || e.target.id === 'water' || e.target.id === 'complimentaryTea' || e.target.id === 'security' || e.target.id === 'furnished' || e.target.id === 'offer'){
             setSidebarData({
@@ -160,6 +166,7 @@ export default function Search() {
         urlParams.set('furnished', sidebarData.furnished);
         urlParams.set('offer', sidebarData.offer);
         urlParams.set('sort', sidebarData.sort);
+        urlParams.set('area', sidebarData.area);
         urlParams.set('order', sidebarData.order);
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
@@ -210,6 +217,26 @@ export default function Search() {
                     <div className="flex gap-2">
                         <input onChange={handleChange} checked={sidebarData.type === 'eventSpace'} type="radio" name="listingType" id="eventSpace" className="w-5"/>
                         <label htmlFor="eventSpace" className="cursor-pointer">Event Space</label>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                    <div className="flex gap-2 items-center">
+                        <label className="font-semibold">Sort:</label>
+                        <select onChange={handleChange} defaultValue={'created_at_desc'} id="sort_order" className="border rounded-lg p-3">
+                            <option value='regularPrice_desc'>Price high to low</option>
+                            <option value='regularPrice_asc'>Price low to high</option>
+                            <option value='createdAt_desc'>Latest</option>
+                            <option value='createdAt_asc'>Oldest</option>
+                        </select>
+                    </div>
+                    <div className="flex gap-2 items-center">    
+                        <label className="font-semibold">Area:</label>
+                        <select onChange={handleChange} defaultValue={''} id="area" className="border rounded-lg p-3">
+                            <option value="all">All</option>
+                            <option value='Tariq Road'>Tariq Road</option>
+                            <option value='Bahadurabad'>Bahadurabad</option>
+                            <option value='Defence'>Defence</option>
+                        </select>
                     </div>
                 </div>
                 <div className="flex gap-2 flex-wrap items-center">
@@ -294,18 +321,6 @@ export default function Search() {
                         <input onChange={handleChange} checked={sidebarData.offer} type="checkbox" id="offer" className="w-5"/>
                         <span>Offer</span>
                     </div>
-                </div>
-                <div className="flex items-center gap-2">
-                    <label className="font-semibold">Sort:</label>
-                    <select onChange={handleChange} defaultValue={'created_at_desc'} id="sort_order" className="border rounded-lg p-3">
-                        <option value='regularPrice_desc'>Price high to low</option>
-                        <option value='regularPrice_asc'>Price low to high</option>
-                        <option value='createdAt_desc'>Latest</option>
-                        <option value='createdAt_asc'>Oldest</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="font-semibold">Price:</label>
                 </div>
                 <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">
                     Search

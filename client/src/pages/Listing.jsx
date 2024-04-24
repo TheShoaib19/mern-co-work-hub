@@ -86,6 +86,9 @@ export default function Listing() {
                         <FaMapMarkerAlt className='text-green-700' />
                         {listing.address}
                     </p>
+                    <p className='flex items-center gap-2 text-slate-600  text-sm'>
+                        Area: {listing.area}
+                    </p>
                     <div className='flex gap-4'>
                         <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
                             {listing.type === 'floor' ? 'Floor' : listing.type === 'desk' ? 'Desk' : listing.type === 'room' ? 'Room' : listing.type === 'meetingRoom' ? 'Meeting Room' : listing.type === 'eventSpace' ? 'Event Space' : ''}
@@ -234,13 +237,12 @@ export default function Listing() {
                                 </span>
                             </li>
                         )}
-                        {listing.numberOfChairs && (
-                            <li className='flex items-center gap-1 whitespace-nowrap '>
-                                <span className='flex gap-1'>
-                                    <FaCouch className='text-lg'/>{listing.numberOfChairs} Person Space
-                                </span>
-                            </li>
-                        )}
+                        <li className='flex items-center gap-1 whitespace-nowrap'>
+                            {listing.numberOfChairs ? 
+                            <span className='flex gap-1'>
+                                <FaCouch className='text-lg'/>{listing.numberOfChairs} Person Space
+                            </span> : ''}
+                        </li>
                     </ul>
                     { currentUser && listing.userRef !== currentUser._id && !contact && (
                         <button onClick={() => setContact(true)} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>
